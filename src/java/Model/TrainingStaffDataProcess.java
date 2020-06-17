@@ -27,10 +27,10 @@ public class TrainingStaffDataProcess {
     {
         Connection connection = null;
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=ASMAD";
-            String user = "sa";
-            String password = "anhsaoxa11";
+            Class.forName("org.postgresql.Driver");
+            String url = "jdbc:postgresql://ec2-35-174-127-63.compute-1.amazonaws.com:5432;d32skbnmf07buj";
+            String user = "ufhdpytmfmqhpe";
+            String password = "124d63e19192c08179e055cf6314adc47e5e9567133c38981ba89d6916435ffb";
             try {
                 connection = DriverManager.getConnection(url, user, password);
             } catch (SQLException ex) {
