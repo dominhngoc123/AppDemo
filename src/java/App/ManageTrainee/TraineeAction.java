@@ -21,6 +21,7 @@ public class TraineeAction extends ActionSupport {
     private List<Trainee> searchList = new ArrayList<>();
     private String courseID;
     private String traineeID;
+    private String traineePassword;
     private String traineeName;
     private String traineeDoB;
     private String traineeAddress;
@@ -42,6 +43,15 @@ public class TraineeAction extends ActionSupport {
         this.trainee = trainee;
     }
 
+    public String getTraineePassword() {
+        return traineePassword;
+    }
+
+    public void setTraineePassword(String traineePassword) {
+        this.traineePassword = traineePassword;
+    }
+
+    
     public List<Trainee> getSearchList() {
         return searchList;
     }
@@ -186,7 +196,7 @@ public class TraineeAction extends ActionSupport {
 
     public String addTrainee() {
         TraineeDataProcess traineeDataProcess = new TraineeDataProcess();
-        if (traineeDataProcess.addTrainee(traineeID, traineeName, traineeDoB, traineeAddress, traineePhoneNumber, traineeEmail, traineeDetail)) {
+        if (traineeDataProcess.addTrainee(traineeID, traineePassword, traineeName, traineeDoB, traineeAddress, traineePhoneNumber, traineeEmail, traineeDetail)) {
             msg = "Add new trainee success";
             return "ADDSUCCESS";
         }
@@ -202,7 +212,7 @@ public class TraineeAction extends ActionSupport {
     public String updateTrainee()
     {
         TraineeDataProcess traineeDataProcess = new TraineeDataProcess();
-        if (traineeDataProcess.updateTrainee(traineeID, traineeName, traineeDoB, traineeAddress, traineePhoneNumber, traineeEmail, traineeDetail))
+        if (traineeDataProcess.updateTrainee(traineeID, traineePassword, traineeName, traineeDoB, traineeAddress, traineePhoneNumber, traineeEmail, traineeDetail))
         {
             msg = "Update trainee success";
             return "UPDATETRAINEESUCCESS";
