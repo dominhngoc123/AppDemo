@@ -58,10 +58,12 @@
                 <tr>
                     <td>Trainee ID:</td>
                     <td><input type="text" name="traineeID" value="<s:property value="trainee.traineeID"/>" readonly/></td>
-                </tr>
-                <tr>
                     <td>Trainee Name:</td>
                     <td><input type="text" name="traineeName" value="<s:property value="trainee.traineeName"/>" readonly/></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="text" name="traineePassword" value="<s:property value="trainee.getPassword()"/>"/></td>
                     <td>Date of birth:</td>
                     <td><input type="text" name="traineeDoB" style="width: 188px;" value="<s:property value="trainee.traineeDoB"/>" readonly/></td>
                 </tr>
