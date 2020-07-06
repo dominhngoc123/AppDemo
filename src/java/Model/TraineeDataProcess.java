@@ -51,6 +51,7 @@ public class TraineeDataProcess {
             while (resultSet.next()) {
                 Trainee trainee = new Trainee();
                 trainee.setTraineeID(resultSet.getString(1));
+                trainee.setPassword(resultSet.getString(8));
                 trainee.setTraineeName(resultSet.getString(2));
                 trainee.setTraineeDoB(resultSet.getString(3));
                 trainee.setTraineeAddress(resultSet.getString(4));
@@ -66,6 +67,11 @@ public class TraineeDataProcess {
             Logger.getLogger(CourseDataProcess.class.getName()).log(Level.SEVERE, null, ex);
         }
         return traineeList;
+    }
+    public static void main(String[] args) {
+        TraineeDataProcess t = new TraineeDataProcess();
+        Trainee tr = t.getDataByID("Demo123123");
+        System.out.println(tr.getPassword());
     }
 
     public List<Trainee> searchTraineeByName(String searchContent) {
@@ -109,6 +115,7 @@ public class TraineeDataProcess {
                 trainee.setTraineePhoneNumber(resultSet.getString(5));
                 trainee.setTraineeEmail(resultSet.getString(6));
                 trainee.setTraineeDetail(resultSet.getString(7));
+                trainee.setPassword(resultSet.getString(8));
             }
         } catch (SQLException ex) {
             Logger.getLogger(TraineeDataProcess.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,9 +208,9 @@ public class TraineeDataProcess {
         return (isDelete > 0);
     }
 
-    public boolean addTrainee(String traineeID, String traineeName, String traineeDoB, String traineeAddress, String traineePhoneNumber, String traineeEmail, String traineeDetail) {
+    public boolean addTrainee(String traineeID, String password, String traineeName, String traineeDoB, String traineeAddress, String traineePhoneNumber, String traineeEmail, String traineeDetail) {
         int check = 0;
-        String sql = "INSERT INTO tblTrainee VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tblTrainee VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
             preparedStatement.setString(1, traineeID);
@@ -213,6 +220,7 @@ public class TraineeDataProcess {
             preparedStatement.setString(5, traineePhoneNumber);
             preparedStatement.setString(6, traineeEmail);
             preparedStatement.setString(7, traineeDetail);
+            preparedStatement.setString(8, password);
             check = preparedStatement.executeUpdate();
             preparedStatement.close();
             getConnection().close();
@@ -266,10 +274,6 @@ public class TraineeDataProcess {
         }
         return msg;
     }
-    public static void main(String[] args) {
-        TraineeDataProcess t = new TraineeDataProcess();
-        System.out.println(t.deleteTrainee("bhasbh"));
-    }
 
     public List<Trainee> searchTraineeInList(String searchContent, List<Trainee> inputList) {
         List<Trainee> listTrainee = new ArrayList<>();
@@ -281,18 +285,19 @@ public class TraineeDataProcess {
         return listTrainee;
     }
 
-    public boolean updateTrainee(String traineeID, String traineeName, String traineeDoB, String traineeAddress, String traineePhoneNumber, String traineeEmail, String traineeDetail) {
+    public boolean updateTrainee(String traineeID, String password, String traineeName, String traineeDoB, String traineeAddress, String traineePhoneNumber, String traineeEmail, String traineeDetail) {
         boolean isUpdate = false;
-        String sql = "UPDATE tblTrainee SET traineeName = ?, traineeDoB = ?, traineeAddress = ?, traineePhoneNumber = ?, traineeEmail = ?, traineeDetail = ? WHERE traineeID = ?";
+        String sql = "UPDATE tblTrainee SET _password = ?, traineeName = ?, traineeDoB = ?, traineeAddress = ?, traineePhoneNumber = ?, traineeEmail = ?, traineeDetail = ? WHERE traineeID = ?";
         try {
             PreparedStatement preparedStatement = getConnection().prepareStatement(sql);
-            preparedStatement.setString(1, traineeName);
-            preparedStatement.setString(2, traineeDoB);
-            preparedStatement.setString(3, traineeAddress);
-            preparedStatement.setString(4, traineePhoneNumber);
-            preparedStatement.setString(5, traineeEmail);
-            preparedStatement.setString(6, traineeDetail);
-            preparedStatement.setString(7, traineeID);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, traineeName);
+            preparedStatement.setString(3, traineeDoB);
+            preparedStatement.setString(4, traineeAddress);
+            preparedStatement.setString(5, traineePhoneNumber);
+            preparedStatement.setString(6, traineeEmail);
+            preparedStatement.setString(7, traineeDetail);
+            preparedStatement.setString(8, traineeID);
             int i = preparedStatement.executeUpdate();
             isUpdate = i > 0;
         } catch (SQLException ex) {
