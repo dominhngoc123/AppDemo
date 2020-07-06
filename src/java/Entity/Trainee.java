@@ -11,6 +11,7 @@ package Entity;
  */
 public class Trainee {
     private String traineeID;
+    private String _password;
     private String traineeName;
     private String traineeDoB;
     private String traineePhoneNumber;
@@ -18,6 +19,15 @@ public class Trainee {
     private String traineeDetail;
     private String traineeAddress;
 
+    public String getPassword() {
+        return _password;
+    }
+
+    public void setPassword(String _password) {
+        this._password = _password;
+    }
+
+    
     public String getTraineeAddress() {
         return traineeAddress;
     }
