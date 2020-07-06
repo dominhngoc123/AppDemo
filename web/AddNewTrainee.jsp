@@ -64,10 +64,12 @@
                     <tr>
                         <td>Trainee ID:</td>
                         <td><input type="text" name="traineeID" placeholder="Enter traineeID"/></td>
-                    </tr>
-                    <tr>
                         <td>Trainee Name:</td>
                         <td><input type="text" name="traineeName" placeholder="Enter trainee name"/></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="text" name="traineePassword" placeholder="Enter trainee password"/></td>
                         <td>Date of birth:</td>
                         <td><input type="date" name="traineeDoB" style="width: 188px;"/></td>
                     </tr>
